@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sungang.dao.UserTestWordDao" >
+
+    <select id="getResuleByUserId" parameterType="java.lang.String" resultType="com.sungang.model.UserTestResult">
+        select * from test_result where appId = #{userId}
+    </select>
+
+    <insert id="saveResult" parameterType="com.sungang.model.UserTestResult">
+        insert into test_result(id,appId) values(#{id},#{userId})
+    </insert>
+
+    <update id="updateResult" parameterType="com.sungang.model.UserTestResult">
+        update test_result set id = #{id} where appId = #{userId}
+    </update>
+</mapper>
