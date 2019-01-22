@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sungang.dao.ResultActionDao" >
+    <resultMap type="com.sungang.model.ResultActionBean" id="resultActionMap">
+        <!-- property对应实体类的属性名称，column为数据库结果集的列的名称 -->
+        <id property="id" column="id" />
+        <result property="shareOpenid" column="share_openid"/>
+        <result property="openid" column="openid"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+    <insert id="saveResultAction" keyProperty="id" useGeneratedKeys="true" parameterType="com.sungang.model.ResultActionBean">
+        insert into SWS_RESULT_ACTION(share_openid,openid,create_time)
+        values(#{shareOpenid},#{openid},#{createTime})
+    </insert>
+
+<select id="getResultActionByOpenId" parameterType="java.lang.String" resultMap="resultActionMap">
+    select * from SWS_RESULT_ACTION where share_openid = #{openid}
+</select>
+</mapper>

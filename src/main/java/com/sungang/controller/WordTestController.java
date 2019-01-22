@@ -1,7 +1,7 @@
 package com.sungang.controller;
 
 
-import com.sungang.model.result.TestResult;
+import com.sungang.model.result.TestResponse;
 import com.sungang.model.result.UserAllMsgResult;
 import com.sungang.service.UserTestWordService;
 import com.sungang.service.impl.InitTagService;
@@ -23,15 +23,15 @@ public class WordTestController extends BaseController {
     private InitTagService initTagService;
 
     @RequestMapping(value = "/testWord", method = RequestMethod.GET)
-    public TestResult getUserTestResult(String openId, int wordStep) {
+    public TestResponse getUserTestResult(String openId, int wordStep) {
         logger.info("openId:{},wordStep:{}",openId,wordStep);
         try {
             userTestWordService.saveResult(openId, wordStep);
-            return TestResult.success();
+            return TestResponse.success();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return TestResult.fail();
+        return TestResponse.fail();
     }
 
     @RequestMapping(value = "/initPage", method = RequestMethod.GET)

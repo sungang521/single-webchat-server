@@ -11,7 +11,7 @@
 
 
     <insert id="saveUser" parameterType="com.sungang.model.User">
-        insert into user(openid,sex,head_url,nickname) values(#{openid},#{sex},#{headUrl},#{nickName})
+        insert into SWS_META_USER(openid,sex,head_url,nickname) values(#{openid},#{sex},#{headUrl},#{nickName})
     </insert>
 
 <select id="queryUserByOpenid" parameterType="java.lang.String" resultMap="userMap">

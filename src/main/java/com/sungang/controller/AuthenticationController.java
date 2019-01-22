@@ -1,6 +1,7 @@
 package com.sungang.controller;
 
 import com.sungang.model.User;
+import com.sungang.model.result.SaveUserResponse;
 import com.sungang.service.UserService;
 import com.sungang.service.impl.AccessTokenService;
 import com.sungang.service.impl.HttpAPIService;
@@ -37,7 +38,8 @@ public class AuthenticationController extends BaseController {
         map.put("appid", appId);
         map.put("secret", appsecret);
         map.put("js_code", code);
-        map.put("grant_type", "authorization_code");
+        map.put("grant_type",
+                "authorization_code");
         String result = null;
         try {
             result = httpAPIService.doGet(openIdUrl, map);
@@ -48,10 +50,10 @@ public class AuthenticationController extends BaseController {
     }
 
     @RequestMapping(value = "/uploadUserMsg", method = RequestMethod.GET)
-    public String saveUser(User user) {
+    public SaveUserResponse saveUser(User user) {
         logger.info("the user that request server is [{}]",user);
         userService.saveUser(user);
-        return "success";
+        return SaveUserResponse.success();
     }
     @RequestMapping(value = "/getAccessToken", method = RequestMethod.GET)
     public String getAccessToken() {
