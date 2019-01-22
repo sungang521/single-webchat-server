@@ -10,7 +10,7 @@ public interface UserTestWordDao {
     /*
     查询是否存在测试结果
      */
-    UserTestResult getResuleByUserId(@Param("userId") String userId);
+    UserTestResult getResuleByUserId(@Param("openid") String openid);
     /*
     插入数据
      */

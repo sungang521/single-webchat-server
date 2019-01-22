@@ -49,6 +49,26 @@ spring:
           max-pool-prepared-statement-per-connection-size: 20
 logging:
   file: /home/sungang/server/single-webchat-server/log/server.log
+#httpclient config
+http:
+   #最大连接数
+   maxTotal : 100
+   #并发数
+   defaultMaxPerRoute : 20
+   #创建连接的最长时间
+   connectTimeout: 1000
+   #从连接池中获取到连接的最长时间
+   connectionRequestTimeout: 500
+   #数据传输的最长时间
+   socketTimeout: 10000
+   #提交请求前测试连接是否可用
+   staleConnectionCheckEnabled: true
+# webchat
+webchat:
+    appId: wx2892a6e1cb385d1a
+    appsecret: a4e0cf9889e5ad7449a79b61397ca150
+    openIdUrl: https://api.weixin.qq.com/sns/jscode2session
+    access_token_url: https://api.weixin.qq.com/cgi-bin/token
 
 
 

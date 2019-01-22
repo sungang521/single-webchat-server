@@ -1,6 +1,8 @@
 package com.sungang.controller;
 
-import com.sungang.model.ReturnMsg;
+
+import com.sungang.model.result.TestResult;
+import com.sungang.model.result.UserAllMsgResult;
 import com.sungang.service.UserTestWordService;
 import com.sungang.service.impl.InitTagService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +23,25 @@ public class WordTestController extends BaseController {
     private InitTagService initTagService;
 
     @RequestMapping(value = "/testWord", method = RequestMethod.GET)
-    public ReturnMsg getUserTestResult(String openId, String sex, int wordStep) {
-        logger.info("openId:{},sex:{},wordStep:{}",openId,sex,wordStep);
-        return userTestWordService.getResult(openId, wordStep, sex);
+    public TestResult getUserTestResult(String openId, int wordStep) {
+        logger.info("openId:{},wordStep:{}",openId,wordStep);
+        try {
+            userTestWordService.saveResult(openId, wordStep);
+            return TestResult.success();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return TestResult.fail();
     }
 
     @RequestMapping(value = "/initPage", method = RequestMethod.GET)
     public List<String> getInitMsg() {
         logger.info("access server......");
         return initTagService.getInitTag();
+    }
+    @RequestMapping(value = "/getTestResultByOpenid", method = RequestMethod.GET)
+    public UserAllMsgResult getUserAllMsgResult(String openid){
+        return userTestWordService.getResultByOpenid(openid);
     }
 
 }

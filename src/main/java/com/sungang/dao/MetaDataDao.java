@@ -11,4 +11,6 @@ public interface MetaDataDao {
     根据比划数和性别生成结果
      */
     MetaData getDataByNameAndWordStep(@Param("wordStep") int wordStep, @Param("sex")String sex);
+
+    MetaData getDataByopenId(@Param("id") int id);
 }

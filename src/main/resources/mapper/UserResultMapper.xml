@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sungang.dao.UserTestWordDao" >
+<mapper namespace="com.sungang.dao.UserTestWordDao">
+    <resultMap type="com.sungang.model.UserTestResult" id="testResultMap">
+        <!-- property对应实体类的属性名称，column为数据库结果集的列的名称 -->
+        <id property="id" column="id" />
+        <result property="openid" column="openid"/>
+        <result property="metaId" column="meta_id"/>
+        <result property="createTime" column="creat_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
 
-    <select id="getResuleByUserId" parameterType="java.lang.String" resultType="com.sungang.model.UserTestResult">
-        select * from test_result where appId = #{userId}
+    <select id="getResuleByUserId" parameterType="java.lang.String" resultMap="testResultMap">
+        select * from SWS_TEST_RESULT where openid = #{openid}
     </select>
 
-    <insert id="saveResult" parameterType="com.sungang.model.UserTestResult">
-        insert into test_result(id,appId) values(#{id},#{userId})
+    <insert id="saveResult" keyProperty="id" useGeneratedKeys="true" parameterType="com.sungang.model.UserTestResult">
+        insert into
+        SWS_TEST_RESULT(openid,meta_id,creat_time,update_time)
+        values(#{openid},#{metaId},#{createTime},#{updateTime})
     </insert>
 
     <update id="updateResult" parameterType="com.sungang.model.UserTestResult">
-        update test_result set id = #{id} where appId = #{userId}
+        update SWS_TEST_RESULT set
+        meta_id = #{metaId} ,
+        update_time = #{updateTime}
+        where
+        openid = #{openid}
     </update>
 </mapper>

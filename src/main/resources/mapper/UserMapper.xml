@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sungang.dao.UserDao" >
+    <resultMap type="com.sungang.model.User" id="userMap">
+        <!-- property对应实体类的属性名称，column为数据库结果集的列的名称 -->
+        <id property="openid" column="openid" />
+        <result property="sex" column="sex"/>
+        <result property="headUrl" column="head_url"/>
+        <result property="nickName" column="nickname"/>
+    </resultMap>
+
+
+    <insert id="saveUser" parameterType="com.sungang.model.User">
+        insert into user(openid,sex,head_url,nickname) values(#{openid},#{sex},#{headUrl},#{nickName})
+    </insert>
+
+<select id="queryUserByOpenid" parameterType="java.lang.String" resultMap="userMap">
+    select * from SWS_META_USER where openid = #{openid}
+</select>
+</mapper>
