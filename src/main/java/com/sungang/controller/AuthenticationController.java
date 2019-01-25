@@ -1,7 +1,9 @@
 package com.sungang.controller;
 
+import com.sungang.model.ResultActionBean;
 import com.sungang.model.User;
 import com.sungang.model.result.SaveUserResponse;
+import com.sungang.service.ResultActionService;
 import com.sungang.service.UserService;
 import com.sungang.service.impl.AccessTokenService;
 import com.sungang.service.impl.HttpAPIService;
@@ -9,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +36,8 @@ public class AuthenticationController extends BaseController {
     private UserService userService;
     @Autowired
     private AccessTokenService accessTokenService;
+    @Autowired
+    private ResultActionService resultActionService;
     @RequestMapping(value = "/getUserMsg", method = RequestMethod.GET)
     public String getOpenId(String code) {
         logger.info("request webchat server url: {},appid={},secret={},js_code={}", openIdUrl, appId, appsecret, code);
@@ -50,7 +57,14 @@ public class AuthenticationController extends BaseController {
     }
 
     @RequestMapping(value = "/uploadUserMsg", method = RequestMethod.GET)
-    public SaveUserResponse saveUser(User user) {
+    public SaveUserResponse saveUser(User user,@RequestParam(value = "shareOpenid", required = false) String shareOpenid,@RequestParam(value = "currentOpenid", required = false) String openid ) {
+        if(shareOpenid !=null || openid!=null){
+            ResultActionBean bean = new ResultActionBean();
+            bean.setOpenid(openid);
+            bean.setShareOpenid(shareOpenid);
+            bean.setCreateTime(new Timestamp(new Date().getTime()));
+            resultActionService.saveResultAction(bean);
+        }
         logger.info("the user that request server is [{}]",user);
         userService.saveUser(user);
         return SaveUserResponse.success();

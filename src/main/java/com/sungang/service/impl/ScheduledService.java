@@ -27,6 +27,8 @@ public class ScheduledService {
     private String appsecret;
     @Value("${webchat.access_token_url}")
     private String url;
+    @Value("${webchat.access_token_path}")
+    private String token_path;
     @Autowired
     private HttpAPIService httpAPIService;
 
@@ -44,7 +46,7 @@ public class ScheduledService {
         }
         PrintWriter out = null;
         try {
-            File file = org.springframework.util.ResourceUtils.getFile("classpath:access_token.txt");
+            File file = new File(token_path);
             out = new PrintWriter(file);
             out.print(result);
             out.flush();

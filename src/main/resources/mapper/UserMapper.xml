@@ -17,4 +17,7 @@
 <select id="queryUserByOpenid" parameterType="java.lang.String" resultMap="userMap">
     select * from SWS_META_USER where openid = #{openid}
 </select>
+    <delete id="deleteUser" parameterType="java.lang.String">
+        delete from SWS_META_USER where openid = #{openid}
+    </delete>
 </mapper>

@@ -1,5 +1,6 @@
 package com.sungang.service.impl;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -9,11 +10,13 @@ import java.io.*;
  */
 @Service
 public class AccessTokenService {
+    @Value("${webchat.access_token_path}")
+    private String token_path;
     public String getToken(){
         BufferedReader bufferedReader = null;
         String msg = null;
         try {
-            File file = org.springframework.util.ResourceUtils.getFile("classpath:access_token.txt");
+            File file = new File(token_path);
              bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             msg = bufferedReader.readLine();
         } catch (FileNotFoundException e) {

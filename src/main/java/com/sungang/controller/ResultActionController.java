@@ -19,12 +19,12 @@ import java.util.List;
 public class ResultActionController extends BaseController {
     @Autowired
     private ResultActionService resultActionService;
-    @RequestMapping(value = "/saveResultAction",method = RequestMethod.GET)
-    public ResultActionResponse saveResultAction(ResultActionBean bean){
-        bean.setCreateTime(new Timestamp(new Date().getTime()));
-        resultActionService.saveResultAction(bean);
-        return ResultActionResponse.success();
-    }
+//    @RequestMapping(value = "/saveResultAction",method = RequestMethod.GET)
+//    public ResultActionResponse saveResultAction(ResultActionBean bean){
+//        bean.setCreateTime(new Timestamp(new Date().getTime()));
+//        resultActionService.saveResultAction(bean);
+//        return ResultActionResponse.success();
+//    }
     @RequestMapping(value = "/getResultActionByOpenId",method = RequestMethod.GET)
     public List<ResultActionBean> getResultActionByOpenId(String openid){
         return resultActionService.getResultActionByOpenId(openid);

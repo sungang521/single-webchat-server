@@ -9,4 +9,5 @@ import org.apache.ibatis.annotations.Param;
 public interface UserDao {
     void saveUser(User user);
     User queryUserByOpenid(@Param("openid") String openid);
+    void deleteUser(@Param("openid") String openid);
 }
