@@ -4,9 +4,9 @@ server:
 https:
   port: 443
   ssl:
-    key-store: classpath:keystore.keystore
-    key-store-password: sungang
-    key-password: sungang
+    key-store: classpath:www.xkhome.online.pfx
+    key-store-password: 82Qb2nwV
+    key-password: Q99Jejea
     key-store-type: PKCS12
     key-alias: your.alias
 #公共配置与profiles选择无关

@@ -9,7 +9,6 @@ import com.sungang.service.UserService;
 import com.sungang.service.impl.AccessTokenService;
 import com.sungang.service.impl.HttpAPIService;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.http.conn.HttpClientConnectionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

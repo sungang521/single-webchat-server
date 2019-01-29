@@ -69,8 +69,8 @@ public class Config {
         Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
         try {
             //  File keystore = new ClassPathResource("keystore.keystore").getFile();
-            ClassPathResource resource = new ClassPathResource("keystore.keystore");
-            String tempPath = "tmp.keystore";
+            ClassPathResource resource = new ClassPathResource("www.xkhome.online.pfx");
+            String tempPath = "www.xkhome.online.pfx";
             File f = new File(tempPath);
 
             IOUtils.copy(resource.getInputStream(), new FileOutputStream(f));
@@ -81,7 +81,7 @@ public class Config {
             protocol.setSSLEnabled(true);
             protocol.setKeystoreFile(f.getAbsolutePath());
             protocol.setKeystorePass(key_store_password);
-            protocol.setKeyPass(key_password);
+           // protocol.setKeyPass(key_password);
             return connector;
         } catch (IOException ex) {
             throw new IllegalStateException("can't access keystore: [" + "keystore"
