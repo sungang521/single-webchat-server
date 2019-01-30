@@ -74,7 +74,7 @@ public class HttpAPIService {
      * @throws Exception
      */
     public HttpResult doPost(String url, Map<String, Object> map) throws Exception {
-       // 声明httpPost请求
+        // 声明httpPost请求
         HttpPost httpPost = new HttpPost(url);
         // 加入配置信息        httpPost.setConfig(config);
         // 判断map是否为空，不为空则进行遍历，封装from表单对象

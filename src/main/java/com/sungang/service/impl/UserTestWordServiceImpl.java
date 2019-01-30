@@ -32,7 +32,7 @@ public class UserTestWordServiceImpl implements UserTestWordService {
     public void saveResult(String openId, int wordStep) throws Exception {
         UserTestResult result = userTestWordDao.getResuleByUserId(openId);
         User user = userDao.queryUserByOpenid(openId);
-        MetaData metaData = metaDataDao.getDataByNameAndWordStep(wordStep,user.getSex());
+        MetaData metaData = metaDataDao.getDataByNameAndWordStep(wordStep,user.getSex().equals("0")?"1":user.getSex());
         UserTestResult result1 = new UserTestResult();
         result1.setMetaId(metaData.getId());
         result1.setOpenid(openId);

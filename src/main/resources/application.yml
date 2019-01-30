@@ -14,6 +14,9 @@ mybatis:
   typeAliasesPackage: com.sungang.model
   mapperLocations: classpath:mapper/*.xml
 spring:
+    mvc.static-path-pattern: /image/**
+    resources.static-locations: classpath:/static/code
+
     http:
       encoding.force : true
       encoding.charset: UTF-8
@@ -69,7 +72,7 @@ webchat:
     appsecret: a4e0cf9889e5ad7449a79b61397ca150
     openIdUrl: https://api.weixin.qq.com/sns/jscode2session
     access_token_url: https://api.weixin.qq.com/cgi-bin/token
-    access_token_path: D:\ideaworkSpace\singler-server\src\main\resources\access_token.txt
+    access_token_path: access_token.txt
 
 
 
