@@ -48,6 +48,9 @@ public class UserTestWordServiceImpl implements UserTestWordService {
 
     @Override
     public UserAllMsgResult getResultByOpenid(String openid) {
+        if(openid.contains("%26")){
+            openid=openid.split("%26")[0];
+        }
         UserAllMsgResult userResult = new UserAllMsgResult();
         UserTestResult result = userTestWordDao.getResuleByUserId(openid);
         System.out.println(result);

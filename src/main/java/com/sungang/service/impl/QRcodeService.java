@@ -32,7 +32,7 @@ public class QRcodeService {
         String path = SystemHelper.getPath() + File.separator + openid + PIC_SUFFIX;
         File file = new File(path);
         if (file.exists()) {
-            return "/picCode/" + openid + PIC_SUFFIX;
+            return "/image/" + openid + PIC_SUFFIX;
         } else {
             return getUserPicCodeNoexits(token, scene, page, width, openid);
         }
@@ -40,6 +40,8 @@ public class QRcodeService {
 
     private String getUserPicCodeNoexits(String token, String scene, String page, int width, String openid) {
         token = JSON.parseObject(token).get("access_token").toString();
+        logger.info("############"+scene);
+        System.out.println(scene.split("&")[0]);
         RestTemplate rest = new RestTemplate();
         InputStream inputStream = null;
         OutputStream outputStream = null;
@@ -50,7 +52,7 @@ public class QRcodeService {
             logger.info("token is :{}", token);
             Map<String, Object> param = new HashMap<>();
             param.put("scene", scene);
-           // param.put("page", "pages/result/result");
+            param.put("page", page);
             param.put("width", width);
             param.put("auto_color", false);
             Map<String, Object> line_color = new HashMap<>();
@@ -93,7 +95,7 @@ public class QRcodeService {
                 }
             }
         }
-        return "/picCode/" + openid + PIC_SUFFIX;
+        return "/image/" + openid + PIC_SUFFIX;
     }
 
 }

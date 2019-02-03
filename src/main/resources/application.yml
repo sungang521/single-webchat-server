@@ -13,9 +13,11 @@ https:
 mybatis:
   typeAliasesPackage: com.sungang.model
   mapperLocations: classpath:mapper/*.xml
+web.upload-path: /home/sungang/server/single-webchat-server/static/code/
+
 spring:
     mvc.static-path-pattern: /image/**
-    resources.static-locations: classpath:/static/code
+    resources.static-locations: file:${web.upload-path}
 
     http:
       encoding.force : true
@@ -30,7 +32,7 @@ spring:
           filters: stat
           driver-class-name: com.mysql.jdbc.Driver
           #基本属性
-          url: jdbc:mysql://39.104.116.127:3306/single-server?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+          url: jdbc:mysql://39.104.116.127:3306/single-server?useUnicode=true&allowMultiQueries=true&autoReconnect=true
           username: root
           password: root
           #配置初始化大小/最小/最大

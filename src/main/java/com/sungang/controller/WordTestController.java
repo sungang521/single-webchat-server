@@ -41,6 +41,7 @@ public class WordTestController extends BaseController {
     }
     @RequestMapping(value = "/getTestResultByOpenid", method = RequestMethod.GET)
     public UserAllMsgResult getUserAllMsgResult(String openid){
+        logger.info("[{}] query result by openid",openid);
         return userTestWordService.getResultByOpenid(openid);
     }
 
