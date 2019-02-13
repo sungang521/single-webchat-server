@@ -31,6 +31,7 @@ import java.io.*;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -94,8 +95,8 @@ public class AuthenticationController extends BaseController {
     }
 
     @RequestMapping(value = "/getCode", method = RequestMethod.GET)
-    public String getminiqrQr(String scene, String page, int width) {
-        logger.info("scene {},page {},width {}",scene,page,width);
+    public List<String> getminiqrQr(String scene, String page, int width) {
+        logger.info("scene {},page {},width {}", scene, page, width);
         return qRcodeService.getQRCode(getAccessToken(), scene, page, width);
 
     }

@@ -7,4 +7,5 @@ import com.sungang.model.User;
  */
 public interface UserService {
     void saveUser(User user);
+    User queryUserByOpenid(String openid);
 }
