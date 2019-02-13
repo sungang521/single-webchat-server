@@ -1,6 +1,7 @@
 package com.sungang.controller;
 
 import com.sungang.model.ResultActionBean;
+import com.sungang.model.ResultActionResponseBean;
 import com.sungang.model.result.ResultActionResponse;
 import com.sungang.service.ResultActionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ResultActionController extends BaseController {
 //        return ResultActionResponse.success();
 //    }
     @RequestMapping(value = "/getResultActionByOpenId",method = RequestMethod.GET)
-    public List<ResultActionBean> getResultActionByOpenId(String openid){
+    public List<ResultActionResponseBean> getResultActionByOpenId(String openid){
         return resultActionService.getResultActionByOpenId(openid);
     }
 

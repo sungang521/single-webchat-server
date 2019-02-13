@@ -107,7 +107,6 @@ public class QRcodeService {
             MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
             HttpEntity requestEntity = new HttpEntity(param, headers);
             ResponseEntity<byte[]> entity = rest.exchange(url, HttpMethod.POST, requestEntity, byte[].class, new Object[0]);
-            logger.info("调用小程序生成微信永久小程序码URL接口返回结果:" + entity.getBody());
             byte[] result = entity.getBody();
             logger.info(Base64.encodeBase64String(result));
             inputStream = new ByteArrayInputStream(result);
