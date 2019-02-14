@@ -9,6 +9,15 @@ import java.sql.Timestamp;
 public class ResultActionResponseBean extends ResultActionBean implements Serializable{
     private String headurl;
     private String nickName;
+    private String formatTime;
+
+    public String getFormatTime() {
+        return formatTime;
+    }
+
+    public void setFormatTime(String formatTime) {
+        this.formatTime = formatTime;
+    }
 
     public String getHeadurl() {
         return headurl;

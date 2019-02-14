@@ -16,6 +16,6 @@
     </insert>
 
 <select id="getResultActionByOpenId" parameterType="java.lang.String" resultMap="resultActionMap">
-    select * from SWS_RESULT_ACTION where share_openid = #{openid}
+    select * from SWS_RESULT_ACTION where share_openid = #{openid} and share_openid != openid
 </select>
 </mapper>

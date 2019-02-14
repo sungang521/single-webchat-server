@@ -9,7 +9,9 @@ import com.sungang.service.ResultActionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,11 +32,14 @@ public class ResultActionServiceImpl implements ResultActionService {
     public List<ResultActionResponseBean> getResultActionByOpenId(String openid) {
         List<ResultActionResponseBean> list = new ArrayList<>();
         List<ResultActionBean> re = resultActionDao.getResultActionByOpenId(openid);
+        SimpleDateFormat aDate=new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
         for(ResultActionBean bean : re){
             User user = userDao.queryUserByOpenid(bean.getOpenid());
             ResultActionResponseBean rar = new ResultActionResponseBean();
             rar.setId(bean.getId());
             rar.setCreateTime(bean.getCreateTime());
+            String formatTime = aDate.format(new Date(bean.getCreateTime().getTime()));
+            rar.setFormatTime(formatTime);
             rar.setShareOpenid(bean.getShareOpenid());
             rar.setOpenid(bean.getOpenid());
             rar.setHeadurl(user.getHeadUrl());
