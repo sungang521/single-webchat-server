@@ -38,7 +38,7 @@ import java.util.Map;
  * Created by SGang on 2019/1/21.
  */
 @RestController
-public class AuthenticationController extends BaseController {
+public class AuthenticationController extends BaseController  {
 
     @Value("${webchat.appId}")
     private String appId;
